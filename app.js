@@ -8,7 +8,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/EcomDB')
     .then(() => { console.log('EcomDB connected!') })
     .catch((err) => console.log(err));
 
-app.engine('ejs', ejsMate);
+app.engine('ejs', require('ejs-mate'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
