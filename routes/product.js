@@ -25,4 +25,19 @@ router.get('/products/:id', async (req, res) => {
   res.render('products/show', { product });
 });
 
+router.get('/products/:id/edit', async (req, res) => {
+  const { id } = req.params;
+  const product = await Product.findById(id);
+
+  res.render('products/edit', { product });
+});
+
+router.patch('/products/:id', async (req, res)=>{
+  const {id} = req.params;
+  const {name, image, price, desc} = req.body;
+
+  await Product.findByIdAndUpdate(id, {name, image, price, desc});
+  res.redirect(`/products/${id}`);
+});
+
 module.exports = router;
