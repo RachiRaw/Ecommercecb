@@ -21,7 +21,11 @@ router.post('/products/:productId/review', async (req, res)=>{
 
 router.delete('/products/:productId/review/:id', async (req, res)=>{
     const {id} = req.params;
+    const { productId } = req.params;
     await Review.findByIdAndDelete(id);
+    const product = await Product.findById(productId);
+    product.reviews.pop(id);
+    product.save();
     res.redirect('back');
 
   });

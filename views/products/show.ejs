@@ -21,7 +21,6 @@
             <div class="col-lg-6">
                 <h2>Reviews</h2>
                 <form action="/products/<%= product._id %>/review" method="POST">
-                    <p>Rating: </p>
                     <fieldset class="starability-grow">
                         <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
                   
@@ -43,7 +42,7 @@
                         <span class="starability-focus-ring"></span>
                       </fieldset>
                     <textarea class="form-control" name="comment" id="" cols="30" rows="3"></textarea>
-                    <button class="btn btn-sm btn-primary">Submit</button>
+                    <button class="btn btn-sm btn-primary my-2">Submit</button>
                 </form>
             </div>
 
