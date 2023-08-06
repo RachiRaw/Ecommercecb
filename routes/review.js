@@ -19,5 +19,12 @@ router.post('/products/:productId/review', async (req, res)=>{
     res.redirect('back')
 });
 
+router.delete('/products/:productId/review/:id', async (req, res)=>{
+    const {id} = req.params;
+    await Review.findByIdAndDelete(id);
+    res.redirect('back');
+
+  });
+
 
 module.exports = router;

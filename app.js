@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
-const productroutes = require('./routes/product');
 const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 
@@ -22,7 +21,11 @@ app.get('/', (req, res) => {
   res.send('Working Fine!');
 });
 
-app.use(productroutes);
+const productRoutes = require('./routes/product');
+const reviewRoutes = require('./routes/review');
+
+app.use(productRoutes);
+app.use(reviewRoutes);
 
       
 const PORT = 5000;
