@@ -50,7 +50,7 @@
             <% for( let review of product.reviews ) { %>
                 <div class="card w-50">
                     <div class="card-body">
-                      <h5 class="card-title"><%= review.rating %></h5>
+                      <h5 class="card-title"><p class="starability-result" data-rating="<%= review.rating %>"></p></h5>
                       <p class="card-text"><%= review.comment %></p>
                       <form class="d-inline" action="/products/<%= product._id %>/review/<%= review._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-danger btn-sm">Delete</button>
