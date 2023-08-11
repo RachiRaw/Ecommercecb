@@ -1,20 +1,31 @@
 const express = require('express')
 const router = express.Router();
 const Product = require('../models/product');
+const { validateProduct } = require('../middlware/middleware')
 
 router.get('/products',async(req,res)=>{
-  const products = await Product.find({});
-  res.render('products/index', {products});
+  try {
+    const products = await Product.find({});
+    res.render('products/index', {products});
+  }
+  catch (e) {
+    res.render('err', {err: e.message});
+  }
 });
 
 router.get('/product/new', (req, res)=>{
   res.render('products/new');
 });
 
-router.post('/products', async (req, res)=>{
-  const {name, image, price, desc} = req.body;
-  await Product.create({name, image, price, desc});
-  res.redirect('/products');
+router.post('/products', validateProduct, async (req, res)=>{
+  try {
+    const {name, image, price, desc} = req.body;
+    await Product.create({name, image, price, desc});
+    res.redirect('/products');
+  }
+  catch (e) {
+    res.render('err', {err: e.message});
+  }
 })
 
 router.get('/products/:id', async (req, res) => {
